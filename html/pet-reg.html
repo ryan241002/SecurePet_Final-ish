@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Your Pet</title>
+
+    <link rel="stylesheet" href="../styles/pet-reg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="../scripts/pet-reg.js" defer></script>
+
+</head>
+<body>
+    <div class="pet-reg-form">
+        <h1>Register Your Pet</h1>
+
+        <form id="petRegForm" method="POST" action="../php/pet-reg.php" enctype="multipart/form-data">
+            <input type="hidden" id="csrf_token" name="csrf_token">
+            <input type="text" name="pet_name" id="pet_name" placeholder="Pet Name" required>
+
+            <select name="category" id="category" required>
+                <option value="" disabled selected>Category</option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="number" name="age" id="age" placeholder="Age" min="0" required>
+
+            <textarea name="description" id="description" placeholder="Description (Optional)"></textarea>
+
+            <select name="sex" id="sex" required>
+                <option value="" disabled selected>Sex</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <input type="file" name="photo" id="photo" accept="image/*" style="display: none;">
+            <button type="button" onclick="document.getElementById('photo').click()">Choose Photo</button>
+            <input type="hidden" name="croppedImage" id="croppedImage">
+
+            <button type="submit" id="submitBtn">Register Pet</button>
+        </form>
+    </div>
+
+    <div id="cropModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="image-container">
+                <img id="imagePreview">
+            </div>
+            <div class="crop-buttons">
+                <button id="cropButton">Crop & Save</button>
+                <button id="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    
+   
+</body>
+</html>

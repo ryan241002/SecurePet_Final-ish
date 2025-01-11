@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYKmTy5p1y8IULnFQHgWik6cLjL5Nkxrs&callback=initMap" async defer></script>
+
+    <script src="../scripts/auth_check.js"></script>
+    <script src="../scripts/logout.js"></script>
+
+    <title>SecurePet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Headland+One&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/corner-circle.css">
+    <link rel="stylesheet" href="../styles/lost.css">
+    <script src="../scripts/lost.js" defer></script>
+    <script src="../scripts/lost-map.js" defer></script>
+    
+</head>
+    
+    <body>
+
+        <div class="corner-circle"></div>
+
+        <div class = "navbar">
+            <a href ="frontpage.html" class = "site-name">SecurePet</a>
+            <a href = "home.html" class = "home">Home</a>
+            <a href = "adopt.html" class = "adopt">Adopt</a>
+            <a href = "lost.html" class = "lost">Lost</a>
+            <a href = "veterinary.html" class = "vet-services">Veterinary Services</a>
+            
+          </div>
+    
+
+    <div class="lost-grid">
+        <div class="lost-page">
+            Lost Pets
+        </div>
+
+        <div class="map-grid">
+            <div class="map-style" id="map"></div>
+        </div>
+
+        <div class="lost-pets">
+            <div class="search">
+                <input class="search-bar" type="text" placeholder="Search by location or pet name">
+            </div>
+            <div class="pets-content">
+                <!-- Loading state will appear here -->
+            </div>
+        </div>
+
+    </div>
+
+
+    
+    
+
+    </body>
+
+
+</html>

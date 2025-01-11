@@ -1,0 +1,175 @@
+/* Modal Base Styles */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    overflow-y: auto;
+}
+
+.modal-content, .modal-content-editor {
+    background-color: white;
+    border-radius: 15px;
+    margin: 50px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+/* Platform Selection Styles */
+.platform-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.platform-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.platform-option:hover {
+    background-color: #f8f8f8;
+}
+
+.platform-icon {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+/* Image Upload Section */
+.image-upload-section {
+    margin: 25px 0;
+}
+
+#imagePreviewGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.image-preview {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/* Platform Badges */
+.platforms-summary {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.platform-badge {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.platform-badge.website {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.platform-badge.facebook {
+    background-color: #e8f0fe;
+    color: #1877f2;
+}
+
+/* Buttons */
+.continue-btn, .publish-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.continue-btn {
+    background-color: #2196f3;
+    color: white;
+}
+
+.publish-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.continue-btn:hover, .publish-btn:hover {
+    opacity: 0.9;
+}
+
+/* Form Elements */
+#messageEdit {
+    width: 100%;
+    min-height: 200px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-family: inherit;
+    resize: vertical;
+}
+
+#contactInfo {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* Loading State */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8) url('path-to-your-loading-spinner.gif') center no-repeat;
+} 

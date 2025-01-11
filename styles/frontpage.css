@@ -1,0 +1,72 @@
+
+      
+.corner-circle {
+   width: 550px; /* Adjust size as needed */
+   height: 550px; /* Keep width and height equal for a circle */
+   background-color: rgba(217, 218, 243, 1); /* Choose your preferred color */
+   border-radius: 50%; /* Makes the div a circle */
+   position: fixed; /* Sticks the circle in a corner */
+   top: -90px; /* Adjusts distance from the top */
+   right: -150px; /* Shifts half of the circle off the screen */
+   transform: translateY(-50%); /* Adjusts to align vertically */
+   filter: blur(50px);  /*Adds blur effect */
+   z-index: -1; /* Sends the circle behind all other content */
+}
+
+
+.welcome-page{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+.left-section{
+   padding-top: 200px;
+   padding-left: 150px;
+   height: 250px;
+   font-size: 35px;
+   
+}
+
+
+
+.signup-btn, .login-btn{
+   margin-top: 70px;
+   display:inline-block;
+   border-radius: 18px;
+   height:36px;
+   width:110px;
+}
+
+.signup-btn{
+   background-color:white;
+   border-width: 0.1px;
+   margin-left: 30px;
+   transition:box-shadow 0.50s;
+
+}
+
+.signup-btn:hover{
+   box-shadow: rgba(147, 133, 226, 0.5) 0 1px 30px;
+}
+
+.login-btn{
+   background-color:rgba(217, 218, 243, 1) ;
+   border: none;
+   transition:box-shadow 0.50s;
+}
+
+
+.login-btn:hover{
+   box-shadow: rgba(147, 133, 226, 0.5) 0 1px 30px;
+}
+
+.catchphrase{
+   font-family: Headland One;
+}
+
+.right-section{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   object-fit: cover;
+   background-color: lightpink;
+}

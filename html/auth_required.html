@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecurePet - Authentication Required</title>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Headland+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Montserrat, sans-serif;
+        }
+        .site-name {
+            font-family: Galada;
+            font-size: 1.875rem;
+            margin-bottom: 2rem;
+        }
+        .message {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .button {
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: black;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-name">SecurePet</div>
+    <div class="message">Please sign in or sign up to continue</div>
+    <div class="buttons">
+        <a href="signin.html" class="button">Sign In</a>
+        <a href="signup.html" class="button">Sign Up</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <title>SecurePet</title>
+    <script src="scripts/auth_check.js"></script>
+    <script src="scripts/logout.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Headland+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/corner-circle.css">
+
+
+    <style>
+
+        .vet-grid{
+            display:grid;
+            grid-template-columns: 500px 500px 100px;
+        }
+        
+        .map-section {
+            position: relative;
+            width: 500px;
+            height: 650px;
+           
+            
+        }
+
+        .map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+        }
+
+        .button-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+        }
+
+        .region-btn {
+            position: absolute;
+            padding: 30px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .north-btn {
+            top: 25%;
+            left: 60%;
+            width:175px;
+            height: 100px;
+            transform: translateX(-50%);
+        }
+
+        .south-btn {
+            bottom: 25%;
+            left: 50%;
+            width:300px;
+            transform: translateX(-50%);
+        }
+
+        .east-btn {
+            right: 17%;
+            top: 52%;
+            height: 120px;
+            transform: translateY(-50%);
+        }
+
+        .west-btn {
+            left: 25%;
+            top: 52%;
+            height: 120px;
+            transform: translateY(-50%);
+        }
+
+        .central-btn {
+            top: 52%;
+            left: 55%;
+            width:120px;
+            height:130px;
+            transform: translate(-50%, -50%);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: relative;
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            width: 70%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-height: 70vh;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        
+
+        .vet-info-pop {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vet-info-pop:last-child {
+            border-bottom: none;
+        }
+
+        .left-section{
+            background-color: rgba(255, 255, 255, 0.464);
+            font-size: 23px;
+            padding-top:10px;
+            padding-bottom:10px;
+            padding-left:20px;
+            margin-top:290px;
+            margin-bottom:290px;
+            margin-left:250px;
+            border: 2px solid rgb(242, 242, 242);
+            border-radius: 5px;
+            font-family: Inria Sans;
+            font-size: 20px;
+        }
+
+        .vet-list-grid{
+    display:grid;
+    grid-template-rows: 1fr 550px;
+  }
+
+  
+
+  .vet-list{
+   background-color: rgba(217, 218, 243, 1);
+   box-shadow:rgba(147, 133, 226, 0.5) 0 1px 30px;
+   border-radius: 10px;
+
+  }
+
+  .search-bar{
+    width:370px;
+    height:30px;
+    border-radius: 20px;
+    border-width: 0.5px;
+    padding-left: 10px;
+  }
+
+
+  .vet-info{
+    display:grid;
+    grid-template-columns: 60px 1fr;
+    height : 60px;
+    margin: 20px;
+    gap:20px;
+    border: 2px solid rgb(242, 242, 242);
+    border-radius:5px;
+    
+  }
+
+  .vet-profile-pic{
+     background-color: rgb(116, 116, 116);
+     border-radius: 50px;
+     margin:2px;
+  }
+
+
+  .vet-contact{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  .vet-name, .vet-address .vet-num{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+   
+  
+
+  .vet-location{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right:10px;
+  }
+
+  .nearby{
+    padding-left: 110px;
+  }
+
+  .around-the-island{
+    padding-right: 50px;
+  }
+
+  .veterinarians{
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin:20px;
+    height: 470px;
+    padding-top: 1px;
+  }
+
+  .vet-list-pop {
+    max-height: 50vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+
+  .book-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .book-btn:hover {
+    background-color: #45a049;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  #booking-modal .popup-content {
+    max-width: 500px;
+  }
+
+  .vet-info-pop {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .vet-details h3 {
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+  }
+
+  .vet-details p {
+    margin: 5px 0;
+    color: #34495e;
+  }
+
+  .vet-details strong {
+    color: #2c3e50;
+  }
+
+  .book-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .book-btn:hover {
+    background-color: #2980b9;
+  }
+
+  .popup-content {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+  }
+
+  .vet-list-pop {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  .pet-details {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .pet-details h3 {
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+  }
+
+  .pet-details p {
+    margin: 5px 0;
+    color: #34495e;
+  }
+
+    </style>
+</head>
+
+    <body>
+      <div class="corner-circle"></div>
+
+      <div class = "navbar">
+        <a href ="frontpage.html" class = "site-name">SecurePet</a>
+        <a href = "home.html" class = "home">Home</a>
+        <a href = "adopt.html" class = "adopt">Adopt</a>
+        <a href = "lost.html" class = "lost">Lost</a>
+        <a href = "veterinary.html" class = "vet-services">Veterinary Services</a>
+        
+      </div>
+
+
+      <div class = "vet-grid">
+         
+        <div class = "left-grid">
+            <div class = "left-section"> 
+                <a>Veterinary Services</a>
+            </div>
+        </div>
+
+        <div class ="right-grid">
+            <div class="map-section"> 
+                <img class="map" src="../images/MUR2.noback.png">
+                <div class="button-container">
+                    <button class="region-btn north-btn" onclick="openPopup('north')">North</button>
+                    <button class="region-btn south-btn" onclick="openPopup('south')">South</button>
+                    <button class="region-btn east-btn" onclick="openPopup('east')">East</button>
+                    <button class="region-btn west-btn" onclick="openPopup('west')">West</button>
+                    <button class="region-btn central-btn" onclick="openPopup('central')">Central</button>
+                </div>
+            </div>
+
+            <!-- Add popup containers -->
+            <div id="north-popup" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('north')">&times;</span>
+                    <h2>North Region Veterinarians</h2>
+                    <div class="vet-list-pop">
+                        <div class="vet-info-pop">
+                            <div class="vet-details">
+                                
+                            </div>
+                            <button class="book-btn" onclick="bookAppointment('Dr. Sarah Smith')">Book</button>
+                        </div>
+                        <!-- Add more vet-info-pop divs as needed -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repeat for other regions -->
+            <div id="south-popup" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('south')">&times;</span>
+                    <h2>South Region Veterinarians</h2>
+                    <div class="vet-list-pop">
+                        <div class="vet-info-pop">
+                            <div class="vet-details">
+                                <h3>Dr. akshi</h3>
+                                <p>Address: 123 North Street, Grand Baie</p>
+                                <p>Phone: 230-888-0101</p>
+                            </div>
+                            <button class="book-btn" onclick="bookAppointment('Dr. akshi')">Book</button>
+                        </div>
+                        <!-- Add more vet-info-pop divs as needed -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="east-popup" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('east')">&times;</span>
+                    <h2>East Region Veterinarians</h2>
+                    <div class="vet-list-pop">
+                        <div class="vet-info-pop">
+                            <div class="vet-details">
+                                <h3>Dr. akshi</h3>
+                                <p>Address: 123 North Street, Grand Baie</p>
+                                <p>Phone: 230-888-0101</p>
+                            </div>
+                            <button class="book-btn" onclick="bookAppointment('Dr. akshi')">Book</button>
+                        </div>
+                        <!-- Add more vet-info-pop divs as needed -->
+
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="west-popup" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('west')">&times;</span>
+                    <h2>West Region Veterinarians</h2>
+                    <div class="vet-list-pop">
+                        <div class="vet-info-pop">
+                            <div class="vet-details">
+                                <h3>Dr. John West</h3>
+                                <p>Address: 456 West Street, Flic en Flac</p>
+                                <p>Phone: 230-888-0101</p>
+                            </div>
+                            <button class="book-btn" onclick="bookAppointment('Dr. John West')">Book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="central-popup" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('central')">&times;</span>
+                    <h2>Central Region Veterinarians</h2>
+                    <div class="vet-list-pop">
+                        <div class="vet-info-pop">
+                            <div class="vet-details">
+                                <h3>Dr. Mary Central</h3>
+                                <p>Address: 789 Central Avenue, Rose Hill</p>
+                                <p>Phone: 230-777-0101</p>
+                            </div>
+                            <button class="book-btn" onclick="bookAppointment('Dr. Mary Central')">Book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class = "vet-list-grid">
+            <div class = "search">
+              <input class ="search-bar" type="text" placeholder="search">
+            </div>
+
+            <div class = "vet-list">
+              
+              <div class = "vet-location">
+                <div class = "nearby">Nearby | </div>
+                <div class = "around-the-island">Around the island</div>
+              </div>
+             
+              <div class = "veterinarians">
+                <div class = "vet-info">
+                  <div class = "vet-profile-pic">
+                    
+                  </div>
+
+                  <div clas = "vet-contact">
+                    <div class = "vet-name">
+                      Dr Shakuntala
+                    </div>
+
+                    <div class = "vet-address">
+                      Tamil Temple road Surinam
+                    </div>
+
+                    <div class ="vet-num">
+                      57922141
+                    </div>
+                  </div>
+                </div>
+
+              </div> 
+              
+
+            </div>
+        </div>
+
+
+      </div>
+
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          loadUserPets();
+      });
+
+      function openPopup(region) {
+          console.log('Opening popup for region:', region); // Debug log
+          
+          fetch(`../php/get_vets.php?region=${region}`)
+              .then(response => {
+                  console.log('Raw response:', response); // Debug log
+                  return response.text(); // Change to text() first to see raw response
+              })
+              .then(text => {
+                  console.log('Response text:', text); // Debug log
+                  return JSON.parse(text); // Now parse as JSON
+              })
+              .then(vets => {
+                  console.log('Parsed vets:', vets); // Debug log
+                  const popup = document.getElementById(region + '-popup');
+                  const vetList = popup.querySelector('.vet-list-pop');
+                  vetList.innerHTML = '';
+
+                  vets.forEach(vet => {
+                      const vetHtml = `
+                          <div class="vet-info-pop">
+                              <div class="vet-details">
+                                  <h3>${vet.Name}</h3>
+                                  <p><strong>Address:</strong> ${vet.Address}</p>
+                                  <p><strong>Contact:</strong> ${vet.Contact_Num}</p>
+                                  <p><strong>Email:</strong> ${vet.Vet_Email}</p>
+                                  <p><strong>Working Hours:</strong> ${vet.Hours_Of_Work}</p>
+                              </div>
+                              <button class="book-btn" onclick="initiateBooking(${vet.Vet_ID}, '${vet.Name}')">Book</button>
+                          </div>
+                      `;
+                      vetList.innerHTML += vetHtml;
+                  });
+                  popup.style.display = 'block';
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('Error loading veterinarians. Please try again later.');
+              });
+      }
+
+      function closePopup(region) {
+          document.getElementById(region + '-popup').style.display = 'none';
+      }
+
+      function initiateBooking(vetId, vetName) {
+          document.getElementById('selected-vet-id').value = vetId;
+          document.getElementById('booking-modal').style.display = 'block';
+      }
+
+      function closeBookingModal() {
+          document.getElementById('booking-modal').style.display = 'none';
+      }
+
+      function loadUserPets() {
+          fetch('../php/get_user_pets.php')
+              .then(response => response.json())
+              .then(pet => {
+                  if (pet.error) {
+                      alert('Please log in to book appointments');
+                      return;
+                  }
+                  
+                  const petInfoDisplay = document.querySelector('.pet-info-display');
+                  document.getElementById('pet-id').value = pet.Pet_ID;
+                  
+                  petInfoDisplay.innerHTML = `
+                      <div class="pet-details">
+                          <h3>${pet.Pet_Name}</h3>
+                          <p><strong>Category:</strong> ${pet.Category}</p>
+                          <p><strong>Description:</strong> ${pet.Description}</p>
+                      </div>
+                  `;
+              })
+              .catch(error => {
+                  console.error('Error loading pet information:', error);
+              });
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+          const bookingForm = document.getElementById('booking-form');
+          if (bookingForm) {
+              bookingForm.addEventListener('submit', function(e) {
+                  e.preventDefault();
+                  
+                  const formData = new FormData(this);
+                  
+                  // Debug: Log form data
+                  for (let pair of formData.entries()) {
+                      console.log(pair[0] + ': ' + pair[1]);
+                  }
+                  
+                  fetch('../php/create_booking.php', {
+                      method: 'POST',
+                      body: formData
+                  })
+                  .then(response => {
+                      console.log('Raw response:', response);
+                      return response.text();
+                  })
+                  .then(text => {
+                      console.log('Response text:', text);
+                      return JSON.parse(text);
+                  })
+                  .then(data => {
+                      console.log('Parsed data:', data);
+                      if (data.success) {
+                          alert('Booking successful!');
+                          closeBookingModal();
+                      } else {
+                          alert('Booking failed: ' + data.message);
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Error:', error);
+                      alert('An error occurred while booking. Please try again.');
+                  });
+              });
+          } else {
+              console.error('Booking form not found!');
+          }
+      });
+
+      // Function to open booking modal
+      function initiateBooking(vetId, vetName) {
+          const modal = document.getElementById('booking-modal');
+          document.getElementById('selected-vet-id').value = vetId;
+          loadUserPets(); // Load the user's pet information
+          modal.style.display = 'block';
+      }
+
+      // Function to close booking modal
+      function closeBookingModal() {
+          const modal = document.getElementById('booking-modal');
+          modal.style.display = 'none';
+      }
+      </script>
+
+      <!-- Booking Modal -->
+      <div id="booking-modal" class="popup">
+          <div class="popup-content">
+              <span class="close" onclick="closeBookingModal()">&times;</span>
+              <h2>Book Appointment</h2>
+              <form id="booking-form">
+                  <input type="hidden" id="selected-vet-id" name="vet_id">
+                  <input type="hidden" id="pet-id" name="pet_id">
+                  <div class="pet-info-display"></div>
+                  
+                  <div class="form-group">
+                      <label for="date">Date:</label>
+                      <input type="date" id="date" name="date" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="time">Time:</label>
+                      <input type="time" id="time" name="time" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="issue">Issue/Reason:</label>
+                      <textarea id="issue" name="issue" required></textarea>
+                  </div>
+                  
+                  <button type="submit" class="submit-btn">Book Appointment</button>
+              </form>
+          </div>
+      </div>
+
+    </body>
+
+
+</html>

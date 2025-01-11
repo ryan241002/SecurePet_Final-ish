@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <title>SecurePet</title>
+
+    <script src="../scripts/auth_check.js"></script>
+    <script src="../scripts/logout.js"></script>
+    <script src="../scripts/bio_handler.js"></script>
+    <script src="../scripts/share_handler.js" defer></script>
+    <script src="../scripts/profile_handler.js"></script>
+    <script src="../scripts/gallery_handler.js" defer></script>
+    <script src="../scripts/pet_data.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Headland+One&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/corner-circle.css">
+    <link rel="stylesheet" href="../styles/home.css">
+    
+
+</head>
+
+    <body>
+      <div class="corner-circle"></div>
+
+      <div class = "navbar"> 
+        <a href ="frontpage.html" class = "site-name">SecurePet</a>
+        <a href = "home.html" class = "home">Home</a>
+        <a href = "adopt.html" class = "adopt">Adopt</a>
+        <a href = "lost.html" class = "lost">Lost</a>
+        <a href = "veteri.html" class = "vet-services">Veterinary</a>
+        <a href="javascript:void(0)" class="logout" onclick="handleLogout()">Logout</a>
+      </div>
+
+     <div class = "home-grid">
+
+      <div class="user-profile">
+        <div class="welcome-profile"> 
+          <a id="welcomeMessage">Hi, Loading...</a>
+        </div>
+
+        <div class = "profile-pic">
+        </div>
+        
+      </div>
+
+      <div class = "pet-profile-grid">
+        <div class="pet-info">
+          <div class="pet-info-top"> 
+            <div class="pet-info-top-grid">
+              <div class="pet-profile-pic"> 
+                <img src="../images/default-pet.jpg" id="petProfileImage">
+              </div>
+              
+              <div class="pet-name">
+                <div class="animal" data-field="Category"></div>
+                <br>
+                <div class="name-of-pet" data-field="Pet_Name"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pet-info-middle"> 
+            <div class="address" data-field="Location"></div>
+          </div>
+
+          <div class="pet-info-bottom">
+            <div class="pet-info-bottom-grid">
+              <div class="age">
+                <a>Age</a>
+                <div class="age-of-pet" data-field="Age"></div>
+              </div>
+
+              <div class="breed">
+                <a>Breed</a>
+                <div class="breed-of-pet" data-field="Category"></div>
+              </div>
+
+              <div class="sex">
+                <a>Sex</a>
+                <div class="sex-of-pet" data-field="Sex"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="edit-prof-btn">
+            <button class="edit-profile-btn" onclick="toggleEditMode()"> 
+              <svg class="svg" viewBox="0 0 512 512">
+                <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+        
+        <div class = "lost-btn">
+          
+          <div class = "lost-btn-catchphrase">
+            <a>
+              Help is just around the corner
+            </a>
+          </div>
+
+          <div class = "lost-btn-paw">
+            
+            <div class ="paw-pic-div">
+              
+              <button class = "paw-button" onclick="openShareModal()">
+                <img class="paw-pic" src="../images/paw.png" alt="Share">
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class = "gallery-bio">
+
+        <div class = "gallery">
+          <div class = "picture-in-gallery">
+        
+          </div>
+        </div>
+
+        <div class="bio">
+          <p id="bioText"></p>
+          <textarea id="bioEditor" style="display: none;"></textarea>
+          <button class="edit-bio-btn" onclick="toggleBioEdit()">Edit bio</button>
+          <button class="upload-photos-btn" onclick="openUploadModal()">Add Photos</button>
+        </div>
+        
+      </div>
+    </div>
+
+    
+
+    <div id="shareModalContainer"></div>
+
+    
+    
+    </div>
+
+  
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=939900814742628" 
+        nonce="random_nonce">
+    </script>
+
+  
+    </body>
+
+
+</html>

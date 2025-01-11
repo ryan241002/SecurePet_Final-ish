@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecurePet</title>
+    <!-- Security Headers -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="referrer" content="strict-origin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Headland+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/signup.css">
+    <script src="../scripts/signup.js" defer></script>
+</head>
+
+<body>
+    <div class="signup-form">
+        <div class="site-name">
+            Securepet
+        </div>
+        
+        <div class="signup-info">
+            <form id="signupForm" action="../php/register.php" method="POST">
+                <input type="hidden" id="csrf_token" name="csrf_token">
+                
+                <input class="name" type="text" name="name" id="name" 
+                    placeholder="Name" 
+                    pattern="[A-Za-z]{2,50}"
+                    required 
+                    maxlength="50">
+
+                <input class="surname" type="text" name="surname" id="surname" 
+                    placeholder="Surname" 
+                    pattern="[A-Za-z]{2,50}"
+                    required 
+                    maxlength="50">
+
+                <input class="email" type="email" name="email" id="email" 
+                    placeholder="Email" 
+                    required 
+                    maxlength="100">
+
+
+                <input class="password" type="password" name="password" id="password" 
+                    placeholder="Password" 
+                    required 
+                    minlength="8"
+                    maxlength="128">
+
+                <input class="confirm-password" type="password" name="confirm_password" id="confirm_password" 
+                    placeholder="Confirm Password" 
+                    required 
+                    minlength="8"
+                    maxlength="128">
+
+                <input class="contact-number" type="tel" name="contact_number" id="contact_number" 
+                    placeholder="Contact Number" 
+                    pattern="[0-9+\-\s]{10,15}"
+                    required 
+                    maxlength="15">
+
+                <input class="address" type="text" name="address" id="address" 
+                    placeholder="Address" 
+                    required 
+                    maxlength="200">
+            </form>
+        </div>
+
+        <div class="line">Already signed up? <a href="../html/signin.html">login</a></div>
+        <button class="signup-btn" type="submit" form="signupForm" id="submitBtn">Sign up</button>
+    </div>
+</body>
+</html>

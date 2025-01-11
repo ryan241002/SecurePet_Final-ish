@@ -1,0 +1,52 @@
+.site-name{
+   font-family: Galada;
+   font-size: 1.875rem;
+   padding-left: 1.875rem;
+   text-decoration:none;
+   color:black;
+}
+
+.navbar{
+   display: grid;
+   grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+   margin-bottom: 4.375rem;
+}
+
+.home, .adopt, .lost, .vet-services{
+   font-family:Montserrat;
+   font-size: 1.25rem;
+   padding-top:0.9375rem;
+   text-decoration:none;
+   color:black;
+}
+
+.logout {
+    font-family: Montserrat;
+    font-size: 1.25rem;
+    padding-top: 0.9375rem;
+    text-decoration: none;
+    color: black;
+    justify-self: end;  /* This will align it to the right */
+    margin-right: 1.875rem;
+}
+
+/* Add media query for smaller screens */
+@media screen and (max-width: 768px) {
+   .navbar {
+       grid-template-columns: 1fr;
+       gap: 1rem;
+       text-align: center;
+   }
+   
+   .site-name {
+       padding-left: 0;
+   }
+   
+   .logout {
+       margin-right: 0;
+       justify-self: center;
+   }
+}
+
+
+

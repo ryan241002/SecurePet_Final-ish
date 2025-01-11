@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>  
+<head>
+   <title>SecurePet</title>
+
+ 
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Galada&family=Headland+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   
+   <link rel="stylesheet" href="../styles/navbar.css">
+   <link rel="stylesheet" href="../styles/frontpage.css">
+
+
+</head>
+
+<body>
+
+   <div class="corner-circle"></div>
+
+   <div class = "navbar">
+         <a class = "site-name">SecurePet</a>
+         <a href = "signin.html" class = "home">Home</a>
+         <a href = "signin.html" class = "adopt">Adopt</a>
+         <a href = "signin.html" class = "lost">Lost</a>
+         <a href = "signin.html" class = "vet-services">Veterinary Services</a>
+   </div>
+
+   <div class = "welcome-page">
+      <div class = "left-section">
+
+         <div class = "catchphrase">
+            <a>Imagine a world where <br> losing your pet doesn't mean <br> losing Hope</a>
+         </div>
+        
+         
+         <div class = "buttons">
+            <button class = "login-btn" onclick="window.location.href='signin.html'">log in</button> 
+            <button class = "signup-btn" onclick="window.location.href='signup.html'">Sign up</button>
+         </div>
+
+      </div>
+
+         <div class = "right-section"> 
+           
+         </div>
+      </div>
+   </div>
+
+   <script>
+   document.addEventListener('DOMContentLoaded', function() {
+       fetch('../php/check_session.php')
+           .then(response => response.json())
+           .then(data => {
+               if (data.status === 'success') {
+                   // If user is already logged in, redirect to home
+                   window.location.href = 'home.html';
+               }
+           });
+   });
+   </script>
+
+</body>
+
+</html>
+

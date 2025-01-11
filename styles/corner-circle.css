@@ -1,0 +1,12 @@
+.corner-circle {
+    width: 550px; /* Adjust size as needed */
+    height: 550px; /* Keep width and height equal for a circle */
+    background-color: rgba(217, 218, 243, 1); /* Choose your preferred color */
+    border-radius: 50%; /* Makes the div a circle */
+    position: fixed; /* Sticks the circle in a corner */
+    top: 55%; /* Centers the circle vertically */
+    left: -150px; /* Positions the circle towards the middle left */
+    transform: translateY(-50%); /* Adjusts to align vertically */
+    filter: blur(50px);  /*Adds blur effect */
+    z-index: -1; /* Sends the circle behind all other content */
+  }
